@@ -3,7 +3,7 @@ import { ref, onMounted } from 'vue'
 import { type taskItem, getTaskList, adminAuth } from '@/api/admin'
 import { useRouter } from 'vue-router'
 import { useUUIDStore } from '@/stores/userInfo'
-import { Tag, Cell, CellGroup, Loading, NavBar } from 'vant'
+import { Tag, Cell, CellGroup, Loading, NavBar, type TagType } from 'vant'
 import 'vant/es/tag/style/index'
 import 'vant/es/cell/style/index'
 import 'vant/es/cell-group/style/index'
@@ -82,7 +82,7 @@ const clickBack = () => history.back()
           center
         >
           <template #right-icon>
-            <Tag :type="statusList[task.status].type" size="medium">
+            <Tag :type="statusList[task.status].type as TagType" size="medium">
               <div class="spanWrap">{{ statusList[task.status].text }}</div>
             </Tag>
           </template>
