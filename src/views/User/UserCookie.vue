@@ -24,6 +24,7 @@ function sumbit() {
         if (status == 'success') {
           showSuccessToast('任务提交成功')
           buttonLoading.value = false
+          window.location.href = '/home'
         } else {
           showFailToast(res.detail)
           buttonLoading.value = false

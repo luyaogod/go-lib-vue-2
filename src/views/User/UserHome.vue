@@ -49,11 +49,17 @@ const wxCookieStatusLoading = ref(true)
 function getCookieStatus() {
   user_task(uuid)
     .catch(() => {
-      showFailToast('任务数据获取失败！')
+      showFailToast('用户数据获取失败')
+      checked.value = false
+      wxCookieStatus.value = false
+      wxCookieStatusLoading.value = false
     })
     .then((rep) => {
       if (!rep) {
-        showFailToast('用户数据获取失败')
+        // showFailToast('请注意查看教程绑定数据')
+        checked.value = false
+        wxCookieStatus.value = false
+        wxCookieStatusLoading.value = false
       } else {
         checked.value = rep.open
         if (rep.status == 1) {
@@ -87,7 +93,6 @@ onMounted(() => {
     if (store.userInfo == undefined) {
       getUserInfo()
     }
-
     getCookieStatus()
   }
 })
