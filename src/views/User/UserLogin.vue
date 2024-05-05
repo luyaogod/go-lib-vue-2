@@ -3,8 +3,9 @@ import { ref, onMounted } from 'vue'
 import { userDetail } from '@/api/user'
 import { useRouter } from 'vue-router'
 import { useUUIDStore } from '@/stores/userInfo'
-import { showFailToast } from 'vant'
+import { showFailToast, showSuccessToast } from 'vant'
 import 'vant/es/toast/style/index'
+import 'vant/es/loading/style/index'
 
 const router = useRouter()
 const store = useUUIDStore()
@@ -28,7 +29,7 @@ function click() {
 
 onMounted(() => {
   if (store.getUUID != '') {
-    console.log(store.getUUID)
+    showSuccessToast('您已登录过正在跳转！')
     router.push('/home')
   }
 })

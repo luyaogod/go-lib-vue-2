@@ -42,6 +42,12 @@ const router = createRouter({
       component: () => import('@/views/User/UserTest.vue')
     },
     {
+      path: '/help',
+      name: 'help',
+      component: () => import('@/views/User/UserHelp.vue')
+    },
+    /////////////////////////////////////////////////////////////////
+    {
       path: '/admin',
       name: 'adminLogin',
       component: () => import('@/views/Admin/AdminLogin.vue')
@@ -52,7 +58,6 @@ const router = createRouter({
       meta: { requireAuth: true },
       component: () => import('@/views/Admin/AdminHome.vue')
     },
-    /////////////////////////////////////////////////////////////////
     {
       path: '/admin/users',
       name: 'userMangement',
@@ -103,7 +108,7 @@ router.beforeEach((to, from, next) => {
     if (uuid !== '' && uuid !== undefined) {
       next()
     } else {
-      next({ name: 'errorPage', query: { redirect: to.fullPath } })
+      next({ name: '/', query: { redirect: to.fullPath } })
     }
   } else next()
 })

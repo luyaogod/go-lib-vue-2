@@ -32,6 +32,11 @@ function goMorning() {
   router.push('/morning')
 }
 
+function goHelp() {
+  showLoading.value[3] = true
+  router.push('/help')
+}
+
 //用户校验与数据获取
 const router = useRouter()
 const store = useUUIDStore()
@@ -47,8 +52,6 @@ function getCookieStatus() {
       showFailToast('任务数据获取失败！')
     })
     .then((rep) => {
-      console.log(rep)
-
       if (!rep) {
         showFailToast('用户数据获取失败')
       } else {
@@ -110,8 +113,7 @@ function drowpDownClick() {
 //退出登录
 function logout() {
   store.saveUUID('')
-  console.log(store.getUUID)
-  router.push('/')
+  window.location.href = '/'
 }
 </script>
 
@@ -187,10 +189,7 @@ function logout() {
         </y-button-card>
       </div>
 
-      <a
-        class="button button-right"
-        href="https://www.yuque.com/luyao-sxof0/delwcn/lc7i6cilay0r1hb0?singleDoc#《选座教程》"
-      >
+      <div class="button button-right" @click="goHelp">
         <y-button-card color="danger">
           <template v-slot:icon>
             <div class="icon-box">
@@ -202,7 +201,7 @@ function logout() {
           </template>
           <template v-slot:head> 帮助文档 </template>
         </y-button-card>
-      </a>
+      </div>
     </div>
 
     <div class="input-warp">
@@ -292,7 +291,7 @@ function logout() {
 }
 
 .drop-down {
-  font-size: 5px;
+  font-size: 15px;
   display: flex;
   align-items: center;
   justify-content: center;
